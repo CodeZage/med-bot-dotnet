@@ -11,11 +11,12 @@ public class Program
 
     public static Task Main(string[] args)
     {
-#if DEBUG // Loads the correct .env file depending on whether or not you are running in debug configuration or release
+#if DEBUG // Loads the correct .env file
         var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName;
+        Console.WriteLine($"Looking for .env files here: {path!}");
         DotEnv.LoadEnvironmentVariables(Path.Combine(path!, ".env"));
-#else
-        DotEnv.LoadEnvironmentVariables(Path.Combine(Directory.GetCurrentDirectory(), ".env"));
+        
+        // When running in production add the environment variable on startup
 #endif
 
         var token = Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN");
@@ -45,10 +46,6 @@ public class Program
     {
         var guild = _client.GetGuild(813033894659620874); // Defines the Medialogy discord server
 
-        List<ApplicationCommandProperties> applicationCommandProperties = new();
-
-        await _client.BulkOverwriteGlobalApplicationCommandsAsync(applicationCommandProperties.ToArray());
-
         var studentCommand =
             new SlashCommandBuilder().WithName("student").WithDescription("Declare yourself a student.");
 
@@ -66,7 +63,7 @@ public class Program
             );
 
         var commands = new List<SlashCommandBuilder> { studentCommand, selectYearCommand };
-        
+
         try
         {
             foreach (var command in commands) await guild.CreateApplicationCommandAsync(command.Build());
