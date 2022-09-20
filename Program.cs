@@ -104,31 +104,31 @@ public class Program
         switch ((long)command.Data.Options.First().Value)
         {
             case 1:
-                await (command.User as IGuildUser).AddRoleAsync(813118674642403343);
-                await command.RespondAsync($"You are now a 1st year student.", ephemeral: true);
+                await ((IGuildUser)command.User).AddRoleAsync(813118674642403343);
+                await command.RespondAsync("You are now a 1st year student.", ephemeral: true);
                 break;
             case 2:
-                await (command.User as IGuildUser).AddRoleAsync(813124643799302146);
-                await command.RespondAsync($"You are now a 2nd year student.", ephemeral: true);
+                await ((IGuildUser)command.User).AddRoleAsync(813124643799302146);
+                await command.RespondAsync("You are now a 2nd year student.", ephemeral: true);
                 break;
             case 3:
-                await (command.User as IGuildUser).AddRoleAsync(813124991641845771);
-                await command.RespondAsync($"You are now a 3rd year student.", ephemeral: true);
+                await ((IGuildUser)command.User).AddRoleAsync(813124991641845771);
+                await command.RespondAsync("You are now a 3rd year student.", ephemeral: true);
                 break;
             case 4:
-                await (command.User as IGuildUser).AddRoleAsync(813127288836849694);
-                await command.RespondAsync($"You are now a 4th year student.", ephemeral: true);
+                await ((IGuildUser)command.User).AddRoleAsync(813127288836849694);
+                await command.RespondAsync("You are now a 4th year student.", ephemeral: true);
                 break;
             case 5:
-                await (command.User as IGuildUser).AddRoleAsync(813131657791012884);
-                await command.RespondAsync($"You are now a 5th year student.", ephemeral: true);
+                await ((IGuildUser)command.User).AddRoleAsync(813131657791012884);
+                await command.RespondAsync("You are now a 5th year student.", ephemeral: true);
                 break;
         }
     }
 
     private async Task StudentCommandHandler(SocketSlashCommand command)
     {
-        await (command.User as IGuildUser).AddRoleAsync(892799588191313950);
+        await ((IGuildUser)command.User).AddRoleAsync(892799588191313950);
         await command.RespondAsync("You are now a student 🐸.", ephemeral: true);
     }
 
